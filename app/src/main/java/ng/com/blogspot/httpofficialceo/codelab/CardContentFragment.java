@@ -2,6 +2,7 @@ package ng.com.blogspot.httpofficialceo.codelab;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
@@ -17,8 +18,6 @@ import android.widget.TextView;
 
 
 public class CardContentFragment extends Fragment {
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -40,6 +39,16 @@ public class CardContentFragment extends Fragment {
             picture = (ImageView) itemView.findViewById(R.id.card_image);
             name = (TextView) itemView.findViewById(R.id.card_title);
             description = (TextView) itemView.findViewById(R.id.card_text);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    Context context = v.getContext();
+
+                    Intent myIntent = new Intent(v.getContext(), DetailActivity.class);
+                    context.startActivity(myIntent);
+                }
+            });
         }
     }
 

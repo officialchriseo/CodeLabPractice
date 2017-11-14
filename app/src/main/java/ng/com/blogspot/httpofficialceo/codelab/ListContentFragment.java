@@ -2,6 +2,7 @@ package ng.com.blogspot.httpofficialceo.codelab;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
@@ -17,10 +18,10 @@ import android.widget.TextView;
 
 
 public class ListContentFragment extends Fragment {
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         // Inflate the layout for this fragment
         RecyclerView recyclerView = (RecyclerView) inflater.inflate(
                 R.layout.recycler_view, container, false);
@@ -40,6 +41,14 @@ public class ListContentFragment extends Fragment {
             avator = (ImageView) itemView.findViewById(R.id.list_avatar);
             name = (TextView) itemView.findViewById(R.id.list_title);
             description = (TextView) itemView.findViewById(R.id.list_desc);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Context context = v.getContext();
+                    Intent myIntent = new Intent(v.getContext(), DetailActivity.class);
+                    context.startActivity(myIntent);
+                }
+            });
         }
     }
 
@@ -66,6 +75,7 @@ public class ListContentFragment extends Fragment {
         @Override
         public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             return new ViewHolder(LayoutInflater.from(parent.getContext()), parent);
+
         }
 
         @Override
